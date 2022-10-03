@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monster Hunter Rise</title>
+    <link rel="icon" href="./picture/em6.png" type="image/png" sizes="16x16">
+    <link rel="stylesheet" href="./index.css">
+</head>
+
+<body>
+    <!-- 圖片輪播的容器 -->
+    <div class="slideshow-container">
+
+        <!--圖片-->
+        <div class="mySlides fade">
+
+            <img src="./picture/cover1.jpg" style="width:100%;">
+
+        </div>
+
+        <div class="mySlides fade">
+
+            <img src="./picture/cover2.jpg" style="width:100%;">
+
+        </div>
+
+        <div class="mySlides fade">
+
+            <img src="./picture/cover3.jpg" style="width:100%;">
+
+        </div>
+
+        <div class="mySlides fade">
+
+            <img src="./picture/cover4.jpg" style="width:100%;">
+
+        </div>
+
+        <div id="homeText">
+            <h1>隨時隨地， 一起去狩獵吧！！</h1>
+            <h3>為狩獵掀起全新風潮！!</h3>
+        </div>
+
+
+        <div id="btnText">
+            <button class="btn"><a href="content1.html" class="center">
+                    現在開始冒險! </a></button>
+        </div>
+
+        <!-- 下一張跟上一張的按鈕 -->
+        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+        <a class="next" onclick="plusSlides(1)">&#10095;</a>
+    </div>
+    <br>
+
+    <!-- 上方圓圈 -->
+    <div style="text-align:center;margin-top: -495px;">
+        <span class="dot" onclick="currentSlide(1)"></span>
+        <span class="dot" onclick="currentSlide(2)"></span>
+        <span class="dot" onclick="currentSlide(3)"></span>
+        <span class="dot" onclick="currentSlide(4)"></span>
+    </div>
+    <!-- BGM -->
+    <audio id='audio' loop controls>
+        <source src="./BGM.mp3" type="audio/mpeg">
+    </audio>
+
+
+
+
+    <script>
+        let slideIndex = 1;
+        showSlides(slideIndex);
+
+        // 上一張下一張 控制
+        function plusSlides(n) {
+            showSlides(slideIndex += n);
+        }
+
+        // 縮圖控制
+        function currentSlide(n) {
+            showSlides(slideIndex = n);
+        }
+
+        function showSlides(n) {
+            let i;
+            let slides = document.getElementsByClassName("mySlides");
+            let dots = document.getElementsByClassName("dot");
+            if (n > slides.length) { slideIndex = 1 }
+            if (n < 1) { slideIndex = slides.length }
+            for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+            for (i = 0; i < dots.length; i++) {
+                dots[i].className = dots[i].className.replace(" active", "");
+            }
+            slides[slideIndex - 1].style.display = "block";
+            dots[slideIndex - 1].className += " active";
+        }
+        
+        // 設定幾秒輪播
+        setInterval("plusSlides(1)", 2600);
+
+    </script>
+</body>
+
+</html>

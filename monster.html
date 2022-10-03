@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>魔物</title>
+    <link rel="icon" href="./picture/em1.png" type="image/png" sizes="16x16">
+    <link rel="stylesheet" href="./bootstrap-5.2.0-beta1-dist/css/bootstrap.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="./monster.css">
+    <script src="./jquery-3.6.0.js"></script>
+
+</head>
+
+<body>
+    <!-- menu -->
+    <div class="topnav" id="myTopnav">
+        <a href="./index.html" class="active" id="home">
+            <img src="./picture/logo1.jpg" id="logo"></a>
+        <a href="content1.html">首頁</a>
+        <a href="./weapon.html">武器</a>
+        <a href="./monster.html">魔物</a>
+        <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+            <i class="fa fa-bars"></i>
+        </a>
+    </div>
+
+    <h1 id=monsterList>魔物列表</h1>
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+   
+    <!-- 最下面廠商圖片 -->
+    <div class="icon">
+        <a href="#myTopnav"><img id="icon2" src="./picture/icon2.png" alt="" class="img-fluid"></a>
+    </div>
+
+    <script>
+        // 魔物物件
+        var monster = [{
+            mName: "泥翁龍"
+            , mType: "種類：海龍種"
+            , mHabitat: "棲息地：大社遺跡、沙原、水沒林"
+            , mwkAttribute: "弱點屬性：火、冰（非常有效）；雷、龍（有效）"
+            , mwkSpot: "弱點部位：頭部、腹部、尾巴、尾巴尖"
+            , mFrontimg: "./picture/mon0.jpg"
+            , mBackimg: "url(./picture/em0.png)"
+            , mWeb: "https://mhrise.kiranico.com/zh-Hant/data/monsters/2040569941"
+        }, {
+            mName: "赤甲獸"
+            , mType: "種類：牙獸種"
+            , mHabitat: "棲息地：沙原、熔岩洞"
+            , mwkAttribute: "弱點屬性：水、冰（非常有效）；雷（有效）"
+            , mwkSpot: "弱點部位：頭部、上半身、背部"
+            , mFrontimg: "./picture/mon1.jpg"
+            , mBackimg: "url(./picture/em1.png)"
+            , mWeb: "https://mhrise.kiranico.com/zh-Hant/data/monsters/1403354196"
+        }, {
+            mName: "金獅子"
+            , mType: "種類：牙獸種"
+            , mHabitat: "棲息地：大社遺跡、沙原、水沒林、寒冷群島、熔岩洞"
+            , mwkAttribute: "弱點屬性：冰（非常有效）；水（有效）"
+            , mwkSpot: "弱點部位：頭部、軀幹、前肢"
+            , mFrontimg: "./picture/mon2.jpg"
+            , mBackimg: "url(./picture/em2.png)"
+            , mWeb: "https://mhrise.kiranico.com/zh-Hant/data/monsters/243411229"
+        }, {
+            mName: "水獸"
+            , mType: "種類：海龍種"
+            , mHabitat: "棲息地：熔岩洞、水沒林"
+            , mwkAttribute: "弱點屬性：火（非常有效）；雷、冰（有效）"
+            , mwkSpot: "弱點部位：頭部、鬃毛、腹部"
+            , mFrontimg: "./picture/mon3.jpg"
+            , mBackimg: "url(./picture/em3.png)"
+            , mWeb: "https://mhrise.kiranico.com/zh-Hant/data/monsters/585215589"
+        }, {
+            mName: "雌火龍"
+            , mType: "種類：飛龍種"
+            , mHabitat: "棲息地：大社遺跡、熔岩洞、沙原、水沒林"
+            , mwkAttribute: "弱點屬性：龍、雷（非常有效）；水、冰（有效）"
+            , mwkSpot: "弱點部位：頭部、翼、尾巴"
+            , mFrontimg: "./picture/mon4.jpg"
+            , mBackimg: "url(./picture/em4.png)"
+            , mWeb: "https://mhrise.kiranico.com/zh-Hant/data/monsters/366824395"
+        }, {
+            mName: "角龍"
+            , mType: "種類：飛龍種"
+            , mHabitat: "棲息地：冰原"
+            , mwkAttribute: "弱點屬性：冰、水、龍（非常有效）、雷（有效）"
+            , mwkSpot: "弱點部位：頭部、頸部、腹部、翼、尾巴"
+            , mFrontimg: "./picture/mon5.jpg"
+            , mBackimg: "url(./picture/em5.png)"
+            , mWeb: "https://mhrise.kiranico.com/zh-Hant/data/monsters/485829389"
+        }, {
+            mName: "雪鬼獸"
+            , mType: "種類：牙獸種"
+            , mHabitat: "棲息地：寒冷群島"
+            , mwkAttribute: "弱點屬性：火（非常有效）；雷（有效）"
+            , mwkSpot: "弱點部位：頭部、前肢、冰塊"
+            , mFrontimg: "./picture/mon6.jpg"
+            , mBackimg: "url(./picture/em6.png)"
+            , mWeb: "https://mhrise.kiranico.com/zh-Hant/data/monsters/2069053547"
+        }, {
+            mName: "天彗龍"
+            , mType: "種類：古龍種"
+            , mHabitat: "棲息地：大社遺跡、寒冷群島"
+            , mwkAttribute: "弱點屬性：火、水、雷、冰"
+            , mwkSpot: "弱點部位：頭、尾巴、翼足（斬打）"
+            , mFrontimg: "./picture/mon7.jpg"
+            , mBackimg: "url(./picture/em7.png)"
+            , mWeb: "https://mhrise.kiranico.com/zh-Hant/data/monsters/815111868"
+        }, {
+            mName: "霞龍"
+            , mType: "種類：古龍種"
+            , mHabitat: "棲息地：廢神社、水沒林"
+            , mwkAttribute: "弱點屬性:火（非常有效）、龍（有效）"
+            , mwkSpot: "弱點部位：前肢（斬打）、頭部、尾巴（射）"
+            , mFrontimg: "./picture/mon8.jpg"
+            , mBackimg: "url(./picture/em8.png)"
+            , mWeb: "https://mhrise.kiranico.com/zh-Hant/data/monsters/138201299"
+        }, {
+            mName: "鋼龍"
+            , mType: "種類：古龍種"
+            , mHabitat: "棲息地：寒冷群島、沙原"
+            , mwkAttribute: "弱點屬性：雷（非常有效）、火、龍（有效）"
+            , mwkSpot: "弱點部位：頭部、前肢（斬打、射）"
+            , mFrontimg: "./picture/mon9.jpg"
+            , mBackimg: "url(./picture/em9.png)"
+            , mWeb: "https://mhrise.kiranico.com/zh-Hant/data/monsters/257661234"
+        }, {
+            mName: "怨虎龍"
+            , mType: "種類：牙龍種"
+            , mHabitat: "棲息地：大社遺跡、熔岩洞、寒冷群島"
+            , mwkAttribute: "弱點屬性：水、雷（非常有效）、冰（效果較差）"
+            , mwkSpot: "弱點部位：頭部、臂刃"
+            , mFrontimg: "./picture/mon10.jpg"
+            , mBackimg: "url(./picture/em10.png)"
+            , mWeb: "https://mhrise.kiranico.com/zh-Hant/data/monsters/1921564947"
+        }, {
+            mName: "轟龍"
+            , mType: "種類：飛龍種"
+            , mHabitat: "棲息地：寒冷群島、沙原、熔岩洞"
+            , mwkAttribute: "弱點屬性：雷、龍（非常有效）；水、冰（有效）"
+            , mwkSpot: "弱點部位：頭部、前肢，尾巴"
+            , mFrontimg: "./picture/mon11.jpg"
+            , mBackimg: "url(./picture/em11.png)"
+            , mWeb: "https://mhrise.kiranico.com/zh-Hant/data/monsters/808327178"
+        }, {
+            mName: "炎王龍"
+            , mType: "種類：古龍種"
+            , mHabitat: "棲息地：沙原、熔岩洞"
+            , mwkAttribute: "弱點屬性：水、冰（非常有效）；雷、龍（有效）"
+            , mwkSpot: "弱點部位：頭部"
+            , mFrontimg: "./picture/mon12.jpg"
+            , mBackimg: "url(./picture/em12.png)"
+            , mWeb: "https://mhrise.kiranico.com/zh-Hant/data/monsters/200239249"
+        }, {
+            mName: "雷神龍"
+            , mType: "種類：古龍種"
+            , mHabitat: "棲息地：龍宮要塞遺跡"
+            , mwkAttribute: "弱點屬性：龍、冰（非常有效）；火、水（有效）"
+            , mwkSpot: "弱點部位：頭部、帶電(腹部、翼背、尾巴尖)"
+            , mFrontimg: "./picture/mon13.jpg"
+            , mBackimg: "url(./picture/em13.png)"
+            , mWeb: "https://mhrise.kiranico.com/zh-Hant/data/monsters/1695408169"
+        }, {
+            mName: "人魚龍"
+            , mType: "種類：海龍種"
+            , mHabitat: "棲息地：寒冷群島、水沒林、熔岩洞"
+            , mwkAttribute: "弱點屬性：雷（非常有效）、火（有效）"
+            , mwkSpot: "弱點部位：頭部、頸部，尾巴"
+            , mFrontimg: "./picture/mon14.jpg"
+            , mBackimg: "url(./picture/em14.png)"
+            , mWeb: "https://mhrise.kiranico.com/zh-Hant/data/monsters/2146828439"
+        }, {
+            mName: "毒妖鳥"
+            , mType: "種類：鳥龍種"
+            , mHabitat: "棲息地：大社遺跡、沙原、水沒林"
+            , mwkAttribute: "弱點屬性：雷、冰（非常有效）；火、龍（有效）"
+            , mwkSpot: "弱點部位：頭部、舌、翼、尾巴"
+            , mFrontimg: "./picture/mon15.jpg"
+            , mBackimg: "url(./picture/em15.png)"
+            , mWeb: "https://mhrise.kiranico.com/zh-Hant/data/monsters/1636956044"
+        }, {
+            mName: "奇怪龍"
+            , mType: "種類：飛龍種"
+            , mHabitat: "棲息地：熔岩洞、寒冷群島"
+            , mwkAttribute: "弱點屬性：水、雷（非常有效）、冰（有效）"
+            , mwkSpot: "弱點部位：頭部、傘冠，翼"
+            , mFrontimg: "./picture/mon16.png"
+            , mBackimg: "url(./picture/em16.png)"
+            , mWeb: "https://mhrise.kiranico.com/zh-Hant/data/monsters/395307913"
+        }, {
+            mName: "泡狐龍"
+            , mType: "種類：海龍種"
+            , mHabitat: "棲息地：大社遺跡、水沒林、寒冷群島"
+            , mwkAttribute: "弱點屬性：雷、龍（非常有效）；火、冰（有效）"
+            , mwkSpot: "弱點部位：頭部、頸部、背鰭、尾巴"
+            , mFrontimg: "./picture/mon17.jpg"
+            , mBackimg: "url(./picture/em17.png)"
+            , mWeb: "https://mhrise.kiranico.com/zh-Hant/data/monsters/1251979832"
+        }, {
+            mName: "白兔獸"
+            , mType: "種類：牙獸種"
+            , mHabitat: "棲息地：寒冷群島"
+            , mwkAttribute: "弱點屬性：火（非常有效）；雷（有效）"
+            , mwkSpot: "弱點部位：頭部、臀部"
+            , mFrontimg: "./picture/mon18.jpg"
+            , mBackimg: "url(./picture/em18.png)"
+            , mWeb: "https://mhrise.kiranico.com/zh-Hant/data/monsters/1389104311"
+        }, {
+            mName: "泥魚龍"
+            , mType: "種類：魚龍種"
+            , mHabitat: "棲息地：水沒林"
+            , mwkAttribute: "弱點屬性：雷（非常有效）；火、冰、龍（有效）"
+            , mwkSpot: "弱點部位：頭部、頸部、腿、尾巴"
+            , mFrontimg: "./picture/mon19.jpg"
+            , mBackimg: "url(./picture/em19.png)"
+            , mWeb: "https://mhrise.kiranico.com/zh-Hant/data/monsters/1755961030"
+        }, {
+            mName: "天狗獸"
+            , mType: "種類：牙獸種"
+            , mHabitat: "棲息地：大社遺跡、水沒林"
+            , mwkAttribute: "弱點屬性：冰（非常有效）；火、雷（有效）"
+            , mwkSpot: "弱點部位：頭部、翼、尾巴"
+            , mFrontimg: "./picture/mon20.jpg"
+            , mBackimg: "url(./picture/em20.png)"
+            , mWeb: "https://mhrise.kiranico.com/zh-Hant/data/monsters/1935814960"
+        }, {
+            mName: "土砂龍"
+            , mType: "種類：獸龍種"
+            , mHabitat: "棲息地：沙原"
+            , mwkAttribute: "弱點屬性：火、冰（非常有效）；龍（有效）"
+            , mwkSpot: "弱點部位：前肢、尾巴"
+            , mFrontimg: "./picture/mon21.jpg"
+            , mBackimg: "url(./picture/em21.png)"
+            , mWeb: "https://mhrise.kiranico.com/zh-Hant/data/monsters/643686022"
+        }, {
+            mName: "搔鳥"
+            , mType: "種類：鳥龍種"
+            , mHabitat: "棲息地：大社遺跡、水沒林、熔岩洞、沙原"
+            , mwkAttribute: "弱點屬性：水（非常有效）、火、雷、冰、龍（有效）"
+            , mwkSpot: "弱點部位：頭部、前肢、尾巴"
+            , mFrontimg: "./picture/mon22.png"
+            , mBackimg: "url(./picture/em22.png)"
+            , mWeb: "https://mhrise.kiranico.com/zh-Hant/data/monsters/1875928865"
+        }, {
+            mName: "岩龍"
+            , mType: "種類：飛龍種"
+            , mHabitat: "棲息地：沙原、溶岩洞"
+            , mwkAttribute: "弱點屬性：火、水、雷、冰、龍（有效）"
+            , mwkSpot: "弱點部位：腹部、腿"
+            , mFrontimg: "./picture/mon23.png"
+            , mBackimg: "url(./picture/em23.png)"
+            , mWeb: "https://mhrise.kiranico.com/zh-Hant/data/monsters/274815918"
+        }, {
+            mName: "迅龍"
+            , mType: "種類：飛龍種"
+            , mHabitat: "棲息地：大社遺跡、水沒林"
+            , mwkAttribute: "弱點屬性：雷、火（非常有效）；冰、龍（有效）"
+            , mwkSpot: "弱點部位：頭部、前肢、尾巴"
+            , mFrontimg: "./picture/mon24.png"
+            , mBackimg: "url(./picture/em24.png)"
+            , mWeb: "https://mhrise.kiranico.com/zh-Hant/data/monsters/1047302063"
+        }, {
+            mName: "飛雷龍"
+            , mType: "種類：牙龍種"
+            , mHabitat: "棲息地：大社遺跡、水沒林"
+            , mwkAttribute: "弱點屬性：水、火、冰（非常有效）；龍（有效）"
+            , mwkSpot: "弱點部位：頭部、頸部、背部、尾巴"
+            , mFrontimg: "./picture/mon25.jpg"
+            , mBackimg: "url(./picture/em25.png)"
+            , mWeb: "https://mhrise.kiranico.com/zh-Hant/data/monsters/1770194663"
+        }, {
+            mName: "火龍"
+            , mType: "種類：飛龍種"
+            , mHabitat: "棲息地：大社遺跡、熔岩洞"
+            , mwkAttribute: "弱點屬性：龍、雷（非常有效）；水、冰（有效）"
+            , mwkSpot: "弱點部位：頭部、翼、尾巴"
+            , mFrontimg: "./picture/mon26.jpg"
+            , mBackimg: "url(./picture/em26.png)"
+            , mWeb: "https://mhrise.kiranico.com/zh-Hant/data/monsters/381074408"
+        }, {
+            mName: "冰牙龍"
+            , mType: "種類：飛龍種"
+            , mHabitat: "棲息地：寒冷群島"
+            , mwkAttribute: "弱點屬性：冰（非常有效）；火、雷（有效）"
+            , mwkSpot: "弱點部位：頭部、翼、尾巴"
+            , mFrontimg: "./picture/mon27.jpg"
+            , mBackimg: "url(./picture/em27.png)"
+            , mWeb: "https://mhrise.kiranico.com/zh-Hant/data/monsters/614678208"
+        }, {
+            mName: "青熊獸"
+            , mType: "種類：牙獸種"
+            , mHabitat: "棲息地：大社遺跡"
+            , mwkAttribute: "弱點屬性：火（非常有效）；雷、冰（有效）"
+            , mwkSpot: "弱點部位：頭部、上半身、臀部"
+            , mFrontimg: "./picture/mon28.jpg"
+            , mBackimg: "url(./picture/em28.png)"
+            , mWeb: "https://mhrise.kiranico.com/zh-Hant/data/monsters/1374346390"
+        }, {
+            mName: "傘鳥"
+            , mType: "種類：鳥龍種"
+            , mHabitat: "棲息地：大社遺跡、寒冷群島"
+            , mwkAttribute: "弱點屬性：水、雷（非常有效）、冰（有效）"
+            , mwkSpot: "弱點部位：頭部、傘冠，翼"
+            , mFrontimg: "./picture/mon29.png"
+            , mBackimg: "url(./picture/em29.png)"
+            , mWeb: "https://mhrise.kiranico.com/zh-Hant/data/monsters/2084266193"
+        }, {
+            mName: "眠狗龍王"
+            , mType: "種類：鳥龍種"
+            , mHabitat: "棲息地：寒冷群島"
+            , mwkAttribute: "弱點屬性：火"
+            , mwkSpot: "可破壞部位：頭部"
+            , mFrontimg: "./picture/mon30.jpg"
+            , mBackimg: "url(./picture/em30.png)"
+            , mWeb: "https://mhrise.kiranico.com/zh-Hant/data/monsters/718470492"
+        }, {
+            mName: "毒狗龍王"
+            , mType: "種類：鳥龍種"
+            , mHabitat: "棲息地：大社遺跡、水沒林、熔岩洞"
+            , mwkAttribute: "弱點屬性：冰、水（非常有效）、雷（有效）"
+            , mwkSpot: "弱點部位：頭部、身體"
+            , mFrontimg: "./picture/mon31.jpg"
+            , mBackimg: "url(./picture/em31.png)"
+            , mWeb: "https://mhrise.kiranico.com/zh-Hant/data/monsters/1460759793"
+        }, {
+            mName: "鐮鼬龍王"
+            , mType: "種類：鳥龍種"
+            , mHabitat: "棲息地：大社遺跡、水沒林、熔岩洞"
+            , mwkAttribute: "弱點屬性：冰、水（非常有效）、雷（有效）"
+            , mwkSpot: "弱點部位：頭部、身體"
+            , mFrontimg: "./picture/mon32.jpg"
+            , mBackimg: "url(./picture/em32.png)"
+            , mWeb: "https://mhrise.kiranico.com/zh-Hant/data/monsters/1681174536"
+        }, {
+            mName: "妃蜘蛛"
+            , mType: "種類：鋏角種"
+            , mHabitat: "棲息地：沙原、熔岩洞"
+            , mwkAttribute: "弱點屬性：冰（非常有效）；水（有效）"
+            , mwkSpot: "弱點部位：頭部、腿"
+            , mFrontimg: "./picture/mon33.jpg"
+            , mBackimg: "url(./picture/em33.png)"
+            , mWeb: "https://mhrise.kiranico.com/zh-Hant/data/monsters/2026860724"
+        }, {
+            mName: "河童蛙"
+            , mType: "種類：兩棲種"
+            , mHabitat: "棲息地：大社遺跡、寒冷群島、熔岩洞"
+            , mwkAttribute: "弱點屬性：雷（非常有效）；火、冰（有效）"
+            , mwkSpot: "弱點部位：頭部、頸部，前肢"
+            , mFrontimg: "./picture/mon34.jpg"
+            , mBackimg: "url(./picture/em34.png)"
+            , mWeb: "https://mhrise.kiranico.com/zh-Hant/data/monsters/2099040502"
+        }, {
+            mName: "雷狼龍"
+            , mType: "種類：牙龍種"
+            , mHabitat: "棲息地：大社遺跡、水沒林"
+            , mwkAttribute: "弱點屬性：冰（非常有效）；火、水、龍（有效）"
+            , mwkSpot: "弱點部位：頭部、腿跟、背部、後肢"
+            , mFrontimg: "./picture/mon35.jpg"
+            , mBackimg: "url(./picture/em35.png)"
+            , mWeb: "https://mhrise.kiranico.com/zh-Hant/data/monsters/1432800563"
+        }, {
+            mName: "爆鱗龍"
+            , mType: "種類：飛龍種"
+            , mHabitat: "棲息地：大社遺跡、水沒林、熔岩洞、沙原"
+            , mwkAttribute: "弱點属性：龍、雷、冰（有效）"
+            , mwkSpot: "弱點部位：頭部、尾巴、腹部（斬打）、翼（射）"
+            , mFrontimg: "./picture/mon36.jpg"
+            , mBackimg: "url(./picture/em36.png)"
+            , mWeb: "https://mhrise.kiranico.com/zh-Hant/data/monsters/321844636"
+        }, {
+            mName: "蠻顎龍"
+            , mType: "種類：獸龍種"
+            , mHabitat: "棲息地：大社遺跡、沙原、水沒林、溶岩洞"
+            , mwkAttribute: "弱點屬性：水、冰（非常有效）；雷、龍（有效）"
+            , mwkSpot: "弱點部位：頭部、鼻子、翼、尾巴"
+            , mFrontimg: "./picture/mon37.png"
+            , mBackimg: "url(./picture/em37.png)"
+            , mWeb: "https://mhrise.kiranico.com/zh-Hant/data/monsters/1743214542"
+        }, {
+            mName: "百龍之源雷神龍"
+            , mType: "種類：飛龍種"
+            , mHabitat: "棲息地：龍宮要塞遺跡"
+            , mwkAttribute: "弱點屬性：龍、冰（非常有效）"
+            , mwkSpot: "弱點部位：頭、胸部、背部（斬打)、翼臂、腹部帶電器官、尾巴尖（斬打射）"
+            , mFrontimg: "./picture/mon38.jpg"
+            , mBackimg: "url(./picture/em38.png)"
+            , mWeb: "https://mhrise.kiranico.com/zh-Hant/data/monsters/66470224"
+        }, {
+            mName: "風神龍"
+            , mType: "種類：古龍種"
+            , mHabitat: "棲息地：龍宮要塞遺跡"
+            , mwkAttribute: "弱點屬性：龍、火（非常有效）、水、冰、雷（有效）"
+            , mwkSpot: "弱點部位：頭部、胸部風袋、翼背風袋、背部風袋、尾巴尖風袋"
+            , mFrontimg: "./picture/mon39.jpg"
+            , mBackimg: "url(./picture/em39.png)"
+            , mWeb: "https://mhrise.kiranico.com/zh-Hant/data/monsters/2054819914"
+        }, {
+            mName: "首領雷狼龍"
+            , mType: "種類：牙龍種"
+            , mHabitat: "棲息地：大社遺跡、水沒林"
+            , mwkAttribute: "弱點屬性：冰（非常有效）；火、水、龍（有效）"
+            , mwkSpot: "弱點部位：頭部、腿跟、背部、後肢"
+            , mFrontimg: "./picture/mon40.jpg"
+            , mBackimg: "url(./picture/em40.png)"
+            , mWeb: "https://mhrise.kiranico.com/zh-Hant/data/monsters/1150792755"
+        }, {
+            mName: "首領泡狐龍"
+            , mType: "種類：海龍種"
+            , mHabitat: "棲息地：大社遺跡、水沒林、寒冷群島"
+            , mwkAttribute: "弱點屬性：雷、龍（非常有效）；火、冰（有效）"
+            , mwkSpot: "弱點部位：頭部、頸部、背鰭、尾巴"
+            , mFrontimg: "./picture/mon41.jpg"
+            , mBackimg: "url(./picture/em41.png)"
+            , mWeb: "https://mhr.gameqb.net/6841/"
+        }, {
+            mName: "首領角龍"
+            , mType: "種類：飛龍種"
+            , mHabitat: "棲息地：冰原"
+            , mwkAttribute: "弱點屬性：冰、水、龍（非常有效）、雷（有效）"
+            , mwkSpot: "弱點部位：頭部、頸部、腹部、翼、尾巴"
+            , mFrontimg: "./picture/mon42.jpg"
+            , mBackimg: "url(./picture/em42.png)"
+            , mWeb: "https://mhr.gameqb.net/6840/"
+        }, {
+            mName: "首領青熊獸"
+            , mType: "種類：牙獸種"
+            , mHabitat: "棲息地：大社遺跡"
+            , mwkAttribute: "弱點屬性：火（非常有效）；雷、冰（有效）"
+            , mwkSpot: "弱點部位：頭部、上半身、臀部"
+            , mFrontimg: "./picture/mon43.jpg"
+            , mBackimg: "url(./picture/em43.png)"
+            , mWeb: "https://mhr.gameqb.net/6838/"
+        }, {
+            mName: "首領火龍"
+            , mType: "種類：飛龍種"
+            , mHabitat: "棲息地：大社遺跡、熔岩洞"
+            , mwkAttribute: "弱點屬性：龍、雷（非常有效）；水、冰（有效）"
+            , mwkSpot: "弱點部位：頭部、翼、尾巴"
+            , mFrontimg: "./picture/mon44.jpg"
+            , mBackimg: "url(./picture/em44.png)"
+            , mWeb: "https://mhr.gameqb.net/6839/"
+        }, {
+            mName: "首領雌火龍"
+            , mType: "種類：飛龍種"
+            , mHabitat: "棲息地：大社遺跡、熔岩洞、沙原、水沒林"
+            , mwkAttribute: "弱點屬性：龍、雷（非常有效）；水、冰（有效）"
+            , mwkSpot: "弱點部位：頭部、翼、尾巴"
+            , mFrontimg: "./picture/mon45.jpg"
+            , mBackimg: "url(./picture/em45.png)"
+            , mWeb: "https://mhr.gameqb.net/6837/"
+        }]
+
+
+        // 用for迴圈放入div標籤
+        var flip_card = function () {
+            for (i = 0; i <= 45; i++) {
+                $(`.row`).append(
+                    `<div class="col-lg-3">
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front frontImg${i}">
+                            <img alt="Avatar" style="width:300px;height:300px;">
+                        </div>
+                        <div class="flip-card-back" id="mon${i}">
+                            <div class="imageCover">
+                                <a id="web${i}">
+                                    <h1 id="name${i}"></h1>
+                                    <ul>
+                                        <li id="type${i}">
+                                        </li>
+                                        <br>
+                                        <li id="habitat${i}">
+                                        </li>
+                                        <br>
+                                        <li id="wkAttribute${i}">
+                                        </li>
+                                        <br>
+                                        <li id="wkSpot${i}">
+                                        </li>
+                                    </ul>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>`
+                )
+            }
+        }();
+        
+        // 用for迴圈取得物件屬性值放入div 
+        var monstertype = function () {
+            for (x = 0; x <= 45; x++)
+                $(`#name${x}`).text(monster[x].mName),
+                    $(`#type${x}`).text(monster[x].mType),
+                    $(`#habitat${x}`).text(monster[x].mHabitat),
+                    $(`#wkAttribute${x}`).text(monster[x].mwkAttribute),
+                    $(`#wkSpot${x}`).text(monster[x].mwkSpot),
+                    $(`#mon${x}`).css({ "background-image": monster[x].mBackimg }),
+                    $(`.frontImg${x}>img`).prop("src", monster[x].mFrontimg),
+                    $(`#web${x}`).prop("href", monster[x].mWeb)
+        }();
+
+        // menu的function
+        function myFunction() {
+            var x = document.getElementById("myTopnav");
+            if (x.className === "topnav") {
+                x.className += " responsive";
+            } else {
+                x.className = "topnav";
+            }
+        }
+
+    </script>
+
+</body>
+
+</html>

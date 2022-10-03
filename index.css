@@ -1,0 +1,170 @@
+* {
+    box-sizing: border-box
+}
+
+/* 滑動<>設定 */
+.slideshow-container {
+    max-width: 2000px;
+    position: relative;
+    top: 280px;
+    margin: auto;
+    width: 100%;
+}
+
+/* 預設隱藏圖片 */
+.mySlides {
+    display:none;
+}
+
+/*<>按鈕*/
+.prev,
+.next {
+    cursor: pointer;
+    position: absolute;
+    top: 53%;
+    width: auto;
+    margin-top: -5%;
+    padding: 16px;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    transition: 0.6s ease;
+    border-radius: 0 3px 3px 0;
+    user-select: none;
+}
+
+/*下一張按鈕置於最右邊*/
+.next {
+    right: 0;
+    border-radius: 3px 0 0 3px;
+}
+
+/* 經過<>會有背景顏色 */
+.prev:hover,
+.next:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+
+/* 圓圈dot設定 */
+.dot {
+    cursor: pointer;
+    height: 15px;
+    width: 15px;
+    margin: 0 2px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.6s ease;
+}
+
+.active,
+.dot:hover {
+    background-color: #717171;
+}
+
+/* Fading 動畫 */
+.fade {
+    animation-name: fade;
+    animation-duration: 1.5s;
+}
+
+@keyframes fade {
+    from {
+        opacity: .4
+    }
+
+    to {
+        opacity: 1
+    }
+}
+/* 圖片設定+ */
+.mySlides img {
+    height: 100%;
+    width: 100%;
+    -webkit-filter: brightness(90%);
+}
+
+.mySlides {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: -999;
+}
+
+/* btn按鈕文字 */
+.center {
+    text-decoration: none;
+    font-size: 30px;
+}
+
+/* 按鈕左至右動畫 */
+.btn {
+    position: relative;
+    width: auto;
+    min-width: 120px;
+    padding: 10px;
+    text-align: center;
+    color: #fff;
+    background: #DCB15C;
+    cursor: pointer;
+    border-radius: 4px;
+    border: none;
+    margin-left:45%;
+    margin-top: 420px;
+}
+
+.btn::after,
+.btn::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 0;
+    height: 100%;
+    background: #DCB15C;
+    z-index: -2;
+    border-radius: 4px;
+}
+
+.btn:hover {
+    z-index: 1;
+    background: transparent;
+}
+
+.btn::before {
+    /* 動畫秒數 */
+    transition: .3s;
+    background: #dfc080;
+    z-index: -1;
+}
+
+.btn:hover::after,
+.btn:hover::before {
+    width: 100%;
+}
+
+
+
+/* BGM位置 */
+#audio {
+    width: 200px;
+    position: fixed;
+    top: 0px;
+    right: 0px;
+}
+
+/* 標題文字設定 */
+#homeText {
+    position: absolute;
+    margin-left: 10%;
+    margin-top: -100px;
+    font-size: 53px;
+    text-align: center;
+    color: white;
+
+}
+
+a{color:black;}
